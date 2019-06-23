@@ -2,8 +2,6 @@
 import numpy as np
 import pandas
 from sklearn import model_selection
-from sklearn.metrics import accuracy_score
-from sklearn.linear_model import LogisticRegression
 
 # Load dataset
 url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/iris.csv"
@@ -22,6 +20,7 @@ X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(
 numFeat=X_train.shape[1]
 w=np.zeros((1, numFeat))
 b=0
+i=0
 
 # Def
 def sigmoid(num):
@@ -55,6 +54,7 @@ def findWeight(w, b, X, Y, lr):
     MOE=0.00001
     grads=findGrad(w, b, X, Y)
     while dw>MOE or db>MOE:
+        i=i+1
         if i%100 == 0:
             cost=costFun(w, b, X_train, Y_train)
             print(cost)
